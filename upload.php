@@ -12,16 +12,16 @@
 
    if (isset($_SESSION['username']))
    {
-     echo "logged in";
      $username = $_SESSION['username'];
 
      // POST function to insert data into the DB
      if (isset($_POST['category']) ) {
-         echo "uploading";
          $author = $username;
          $category = $_POST['category'];
          $file = $_FILES["image"]["tmp_name"];
          $size = filesize($file);
+         $temp = explode(".", $_FILES["image"]["name"]);
+         $extension = end($temp);
          //$imagecontent = file_get_contents($file);
 
          // Converts to KB and rounded to two sig figs
@@ -33,36 +33,30 @@
          $imageheight = imagesy($image);
 
          // Creates query to send to DB
-         $result = $conn->query("INSERT into images (author, category, width, height, size) VALUES ('$username', '$category', '$imagewidth', '$imageheight', '$imagesize')");
+         $result = $conn->query("INSERT into images (author, category, width, height, size, fileName) VALUES ('$username', '$category', '$imagewidth', '$imageheight', '$imagesize', '$extension')");
+         $last_id = mysqli_insert_id($conn);
+         $fileName = $username . "_" . $last_id . "." . $extension ;
 
          // Kevin Smith
          // Get filename that the user selected
          //
-         $name = $username . "_" . $_FILES['image']['name'];
+         $name = $username . "_" . $last_id . "_" . $_FILES['image']['name'] ;
 
-         // the file input action puts the file in a temp file in your server file system.
-         // move it to a permanent file.
+         // Moves file to server with username_imageID_filename.filetype
+         // This is to prevent conflicts and images not adding to the server.
          //
-         move_uploaded_file($_FILES['image']['tmp_name'], "images/$name");
-
+         move_uploaded_file($_FILES['image']['tmp_name'], "images/$fileName");
 
          if (!$result) {
              echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
          }
-
-         echo $username . "<br />";
-         echo $category . "<br />";
-         echo $imagewidth . "<br />";
-         echo $imageheight . "<br />";
-         echo $imagesize . "<br />";
-          echo "Uploaded image '$name'<br><img src='$name'>";
      }
    }
    else {
-     echo "Please log in.";
+     // Redirects to login if the user is not logg
+     header("Location: http://192.168.64.2/login.php");
+     exit();
    }
-
-
 
 ?>
 <?php

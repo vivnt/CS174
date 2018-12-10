@@ -58,6 +58,7 @@
         <button type="submit" class="btn btn-primary">Sign Up</button>
       </div>
     </form>
+    <a href="login.php">Already have an account? Log in here.</a>
   </div>
 </body>
 </html>

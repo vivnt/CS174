@@ -31,18 +31,18 @@
 			$row = $result->fetch_array(MYSQLI_NUM);
 			$result->close();
 			$token = hash('ripemd128', $password);
-      if ($token == $row[4]) {
-      				session_start();
-      				$_SESSION['username'] = $username;
-      				$_SESSION['firstName'] = $row[1];
-      				$_SESSION['lastName'] = $row[2];
-      				$_SESSION['uid'] = $row[0];
-      				echo "$row[1] $row[2] : Hi $row[0], you are now logged in as '$row[3]'";
-      			}
-      			else die("Invalid username/password combination");
-      		}
-      		else die("Invalid username/password combination");
-      	}
+          if ($token == $row[4]) {
+    				session_start();
+    				$_SESSION['username'] = $username;
+    				$_SESSION['firstName'] = $row[1];
+    				$_SESSION['lastName'] = $row[2];
+    				$_SESSION['uid'] = $row[0];
+    				echo "$row[1] $row[2] : Hi $row[0], you are now logged in as '$row[3]'";
+    			}
+    			else die("Invalid username/password combination");
+    		}
+    		else die("Invalid username/password combination");
+    	}
 
 
   ?>
@@ -61,6 +61,7 @@
         <button type="submit" class="btn btn-primary">Login</button>
       </div>
     </form>
+    <a href="signup.php">Don't have an account? Sign up here.</a>
   </div>
 </body>
 </html>
