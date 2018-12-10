@@ -17,12 +17,13 @@
     $lastName = $_POST['lastName'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $credits = 500;
 
     // Hashes password with ripemd algorithm
     $token = hash('ripemd128', $password);
 
     // Creates query to send to DB
-    $result = $conn->query("INSERT into user (firstName, lastName, username, password) VALUES ('$firstName', '$lastName', '$username', '$token')");
+    $result = $conn->query("INSERT into user (firstName, lastName, username, password, credits) VALUES ('$firstName', '$lastName', '$username', '$token', '$credits')");
     echo "created user";
     if (!$result) {
       echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
@@ -34,7 +35,7 @@
     <div class="row">
       <div class="col-md-4 col-sm-4 col-xs-12"></div>
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <form class="form-container signup">
+        <form class="form-container signup" method="post" enctype="multipart/form-data">
           <h1 style="color:#fff"> Sign Up</h1>
           <div class="form-group">
             <label style="color:#fff">First Name</label>
@@ -52,7 +53,7 @@
             <label style="color:#fff">Password</label>
             <input type="text" class="form-control" name="password" placeholder="Enter Your Password">
           </div>
-          <a href="homepage.html" class="btn btn-success btn-block">Sign Up</a>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
       </div>
       <div class ="col-md-4 col-sm-4 col-xs-12"></div>

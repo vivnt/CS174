@@ -1,3 +1,4 @@
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang ="en">
 <head>
@@ -17,13 +18,14 @@
 <body>
 
   <!-- Navigation -->
+  <!-- Author: Vivian Tran -->
   <?php echo file_get_contents("navigation.html")?>
 
   <!-- Search Bar -->
   <!-- Author: Raghav Gupta -->
   <div class="container-fluid search">
     <h1>Search</h1>
-    <form action="" autocomplete="off" method="post" accept-charset="utf-8">
+    <form action="" autocomplete="off" method="post" enctype="multipart/form-data" accept-charset="utf-8">
       <div class="form-group">
         <label>Search By:</label>
         <select class="form-control" name="searchType">
@@ -35,8 +37,121 @@
         <label for="exampleInputPassword1">ID</label>
         <input type="number" class="form-control" name="searchId" value="searchId" placeholder="ID">
       </div>
-    <button type="submit" name="search" value="search" class="btn btn-primary">Search</button><br />
+      <button type="submit" name="search" value="search" class="btn btn-primary">Search</button><br />
     </form>
+  </div>
+  <div>
+    <div class="container">
+      <div class="container">
+        <h1>Recent</h1>
+        <p>See the most recent photos here.</p>
+      </div>
+
+      <div class="row">
+        <?php
+
+        // Shows all information in image table
+        if (isset($_POST['searchId']) && isset($_POST['search']) && isset($_POST['searchType']))  {
+          $searchId = $_POST['searchId'];
+          $searchType = $_POST['searchType'];
+
+          if ($searchType = "Image ID") {
+            $query = "SELECT * FROM transaction WHERE imageId = '$searchId'";
+            $result = $conn->query($query);
+
+            if (!$result) {
+              die($conn->error);
+            }
+
+            $rows = $result->num_rows;
+
+            // Parses through the table array
+            for ($j = 0 ; $j < $rows ; ++$j) {
+              $result->data_seek($j);
+              echo 'Customer ID: ' . $result->fetch_assoc()['customerId'] . '<br>';
+            }
+          }
+
+          if ($searchType = "Customer ID") {
+            $query = "SELECT * FROM transaction WHERE customerId = '$searchId'";
+            $result = $conn->query($query);
+
+            if (!$result) {
+              die($conn->error);
+            }
+
+            $rows = $result->num_rows;
+
+            // Parses through the table array
+            for ($j = 0 ; $j < $rows ; ++$j) {
+              $result->data_seek($j);
+              echo 'Image ID: ' . $result->fetch_assoc()['imageId'] . '<br>';
+            }
+          }
+        }
+
+        // Shows all information in image table
+        // NOTE TO RAG: Change limit number and for loop count if you want more or less photos
+        $query = "SELECT * FROM images ORDER BY id DESC LIMIT 15";
+        $result = $conn->query($query);
+
+        if (!$result) {
+          die($conn->error);
+        }
+
+        $rows = $result->num_rows;
+
+        // Parses through the table array
+        // NOTE TO RAG: Use this to make your profile area. If you need help, let me know.
+        for ($j = 0 ; $j < 10 ; ++$j) {
+          $result->data_seek($j);
+          $author = $result->fetch_assoc()['author'];
+
+          $result->data_seek($j);
+          $category = $result->fetch_assoc()['category'];
+
+          $result->data_seek($j);
+          $size = $result->fetch_assoc()['size'];
+
+          $result->data_seek($j);
+          $width = $result->fetch_assoc()['width'];
+
+          $result->data_seek($j);
+          $height = $result->fetch_assoc()['height'];
+
+          $result->data_seek($j);
+          $id = $result->fetch_assoc()['id'];
+
+          $result->data_seek($j);
+          $extension = $result->fetch_assoc()['fileName'];
+
+          $fileName = "images/" . $author . "_" . $id . "." . $extension;
+
+          echo ' <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <img class="card-img-top" src="' . $fileName . '" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                  <form method="post" action="">
+                    <input type="hidden" name="id" value="' . $id . '">
+                    <p class="card-text">Author: ' . $author . '</p>
+                    <p class="card-text">Category: ' . $category . '</p>
+                    <p class="card-text">Width: ' . $width . '</p>
+                    <p class="card-text">Height: ' . $height . '</p>
+                    <p class="card-text">Size: ' . $size . '</p>
+                    <p class="card-text">ID: ' . $id . '</p>
+                    <a href="/imageDetail.php/?id=' . $id . '" class="btn btn-primary" style="color: #fff;">View Details</a><br />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>';
+        }
+
+        ?>
+      </div>
+    </div>
   </div>
 </body>
 </html>

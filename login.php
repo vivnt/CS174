@@ -39,6 +39,7 @@
         $_SESSION['username'] = $username;
         $_SESSION['firstName'] = $row[1];
         $_SESSION['lastName'] = $row[2];
+        $_SESSION['credits'] = $row[6];
         $_SESSION['uid'] = $row[0];
         header("Location: http://192.168.64.2/profile.php");
         exit();
@@ -68,11 +69,10 @@
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-success">Login</button>
-
           </div>
         </form>
         <!-- NOTE TO RAG: You can't put this inside the form. Try to figure out another way or anther place. -->
-        <button href="signup.php" class="btn btn-primary">Sign Up</button>
+        <button class="btn btn-primary"><a href="signup.php" style="color:#fff">Sign Up</a></button>
       </div>
       <div class ="col-md-4 col-sm-4 col-xs-12"></div>
     </div>

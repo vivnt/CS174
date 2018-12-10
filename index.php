@@ -4,6 +4,41 @@
 
 <body>
   <?php echo file_get_contents("navigation.html")?>
+  <?php
+  $fileNames = [];
+  $authors = [];
+  $categories = [];
+  $ids = [];
+
+  $query = "SELECT * FROM images LIMIT 10";
+  $result = $conn->query($query);
+
+  if (!$result) {
+    die($conn->error);
+  }
+
+  $rows = $result->num_rows;
+
+  // Parses through the table array
+  // NOTE TO RAG: Use this to make your profile area. If you need help, let me know.
+  for ($j = 0 ; $j < 3 ; ++$j) {
+
+    $result->data_seek($j);
+    $authors[$j] = $result->fetch_assoc()['author'];
+    $author = $result->fetch_assoc()['author'];
+
+    $result->data_seek($j);
+    $categories[$j] = $result->fetch_assoc()['category'];
+
+    $result->data_seek($j);
+    $ids[$j] = $result->fetch_assoc()['id'];
+    $id = $result->fetch_assoc()['id'];
+
+    $result->data_seek($j);
+    $extension = $result->fetch_assoc()['fileName'];
+    $fileNames[$j] = "images/" . $author . "_" . $id . "." . $extension;
+  }
+  ?>
   <!-- Slide Show -->
   <!-- Author: Raghav Gupta -->
   <div id="slides" class="carousel slide" data-ride="carousel">
@@ -12,31 +47,33 @@
       <li data-target="#slides" data-slide-to="1"></li>
       <li data-target="#slides" data-slide-to="2"></li>
     </ul>
+
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <!-- Need to edit this to show images from the database -->
-        <img src="images/bg.jpg">
-        <div class="carousel-caption">
-          <h1 class="display-4"> Image 1</h1>
-          <button type="button" class="btn btn-outline-light btn-lg"> View Image</button>
+        <img width="1350" src="<?php echo $fileNames[0] ?>">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Author: <?php echo $authors[0] ?></h1>
+          <p>Category: <?php echo $categories[0] ?></p>
+          <a class="btn btn-outline-light" href="imageDetail.php/?id=<?php echo $ids[0] ?>" role="button">View Image</a>
         </div>
       </div>
       <div class="carousel-item">
-        <!-- Need to edit this to show images from the database -->
-        <img src="/images/img1.jpg">
-        <div class="carousel-caption">
-          <h1 class="display-4"> Image 2</h1>
-          <button type="button" class="btn btn-outline-light btn-lg"> View Image</button>
+        <img width="1350" src="<?php echo $fileNames[1] ?>">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Author: <?php echo $authors[1] ?></h1>
+          <p>Category: <?php echo $categories[1] ?></p>
+          <a class="btn btn-outline-light" href="imageDetail.php/?id=<?php echo $ids[1] ?>" role="button">View Image</a>
         </div>
       </div>
       <div class="carousel-item">
-        <!-- Need to edit this to show images from the database -->
-        <img src="/images/img2.jpg">
-        <div class="carousel-caption">
-          <h1 class="display-4"> Image 3</h1>
-          <button type="button" class="btn btn-outline-light btn-lg"> View Image</button>
+        <img width="1350" src="<?php echo $fileNames[2] ?>">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Author: <?php echo $authors[2] ?></h1>
+          <p>Category: <?php echo $categories[2] ?></p>
+          <a class="btn btn-outline-light" href="imageDetail.php/?id=<?php echo $ids[2] ?>" role="button">View Image</a>
         </div>
       </div>
+
     </div>
   </div>
 
