@@ -1,7 +1,9 @@
 <?php include('server.php') ?>
 <!-- Author: Raghav Gupta -->
 <html lang="en">
-
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
 <body>
 
   <?php
@@ -28,37 +30,33 @@
   }
 
   ?>
-  <div class="container" style="padding: 15px;">
-    <h1 style="text-align: center;">Sign Up</h1>
-    <form method="post" enctype="multipart/form-data">
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" class="form-control" name="firstName" placeholder="Enter Your First Name">
+  <div class="container-fluid bg">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12"></div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <form class="form-container signup">
+          <h1 style="color:#fff"> Sign Up</h1>
+          <div class="form-group">
+            <label style="color:#fff">First Name</label>
+            <input type="text" class="form-control" name="firstName" placeholder="Enter Your First Name">
+          </div>
+          <div class="form-group">
+            <label style="color:#fff">Last Name</label>
+            <input type="text" class="form-control" name="lastName" placeholder="Enter Your Last Name">
+          </div>
+          <div class="form-group">
+            <label style="color:#fff">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Enter Your Username">
+          </div>
+          <div class="form-group">
+            <label style="color:#fff">Password</label>
+            <input type="text" class="form-control" name="password" placeholder="Enter Your Password">
+          </div>
+          <a href="homepage.html" class="btn btn-success btn-block">Sign Up</a>
+        </form>
       </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" class="form-control" name="lastName" placeholder="Enter Your Last Name">
-      </div>
-      <div class="form-group">
-        <label>Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Enter Your Username">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control" name="password" placeholder="Enter Your Password">
-      </div>
-      <!-- <div class="form-group">
-      <label>User Type</label>
-      <select class="form-control" name="userType">
-      <option>Admin</option>
-      <option>Customer</option>
-    </select>
-  </div> -->
-  <div class="text-center">
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+      <div class ="col-md-4 col-sm-4 col-xs-12"></div>
+    </div>
   </div>
-</form>
-<a href="login.php">Already have an account? Log in here.</a>
-</div>
 </body>
 </html>

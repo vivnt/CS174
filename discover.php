@@ -22,9 +22,20 @@
   <!-- Search Bar -->
   <!-- Author: Raghav Gupta -->
   <div class="container-fluid search">
+    <h1>Search</h1>
     <form action="" autocomplete="off" method="post" accept-charset="utf-8">
-      <input type="text" class="form-control" placeholder="Search..">
-      <button class="btn btn-primary" type="submit" id="addressSearch"> Search </button>
+      <div class="form-group">
+        <label>Search By:</label>
+        <select class="form-control" name="searchType">
+          <option>Image ID</option>
+          <option>Customer ID</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">ID</label>
+        <input type="number" class="form-control" name="searchId" value="searchId" placeholder="ID">
+      </div>
+    <button type="submit" name="search" value="search" class="btn btn-primary">Search</button><br />
     </form>
   </div>
 </body>

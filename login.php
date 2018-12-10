@@ -1,7 +1,9 @@
 <?php include('server.php') ?>
 
 <html lang="en">
-
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
 <body>
 
   <?php
@@ -38,7 +40,8 @@
         $_SESSION['firstName'] = $row[1];
         $_SESSION['lastName'] = $row[2];
         $_SESSION['uid'] = $row[0];
-        echo "$row[1] $row[2] : Hi $row[0], you are now logged in as '$row[3]'";
+        header("Location: http://192.168.64.2/profile.php");
+        exit();
       }
       else die("Invalid username/password combination");
     }
@@ -53,7 +56,7 @@
     <div class="row">
       <div class="col-md-4 col-sm-4 col-xs-12"></div>
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <form class="form-container login">
+        <form class="form-container login" method="post" enctype="multipart/form-data">
           <h1 style="color:#fff"> Login</h1>
           <div class="form-group">
             <label style="color:#fff">Username</label>
@@ -64,9 +67,12 @@
             <input type="text" class="form-control" name="password" placeholder="Enter Your Password">
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-success">Login</button>
+
           </div>
         </form>
+        <!-- NOTE TO RAG: You can't put this inside the form. Try to figure out another way or anther place. -->
+        <button href="signup.php" class="btn btn-primary">Sign Up</button>
       </div>
       <div class ="col-md-4 col-sm-4 col-xs-12"></div>
     </div>
