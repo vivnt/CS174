@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="homepage.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/discover.html">Discover</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="index.html">Logout</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+<!-- Slide Show -->
+        <div id="slides" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0" class="active"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+            <li data-target="#slides" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <!-- Need to edit this to show images from the database -->
+                    <img src="images/bg.jpg">
+                    <div class="carousel-caption">
+                        <h1 class="display-4"> Image 1</h1>
+                        <button type="button" class="btn btn-outline-light btn-lg"> View Image</button>
+                    </div>
+                </div>
+            <div class="carousel-item">
+                <!-- Need to edit this to show images from the database -->
+                <img src="/images/img1.jpg">
+                <div class="carousel-caption">
+                        <h1 class="display-4"> Image 2</h1>
+                        <button type="button" class="btn btn-outline-light btn-lg"> View Image</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <!-- Need to edit this to show images from the database -->
+                    <img src="/images/img2.jpg">
+                    <div class="carousel-caption">
+                        <h1 class="display-4"> Image 3</h1>
+                        <button type="button" class="btn btn-outline-light btn-lg"> View Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+<!-- Welcome Message Jumbotron -->
+        <div class="container-fluid">
+        <div class="row welcome text-center">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+                <h1 class="display-4">Hi!</h1>
+            <p class="lead" style="text-align:center">Welcome to the image hosting and sharing website! Please checkout the "Discover section to see all the latest from our contributors</p>
+            </div>
+        </div>
+        </div>
+
+<!-- Footer -->
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            <p>Footer</p>
+        </div>
+    </body>
+</html>
+
+
