@@ -12,12 +12,6 @@
 
 
   <?php
-
-  $conn = new mysqli($hn, $un, $pw, $db);
-
-  if ($conn->connect_error) {
-    die($conn->connect_error);
-  }
   // POST function to insert data into the DB
   if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
@@ -72,7 +66,7 @@
           </div>
         </form>
         <!-- NOTE TO RAG: You can't put this inside the form. Try to figure out another way or anther place. -->
-        <button class="btn btn-primary"><a href="signup.php" style="color:#fff">Sign Up</a></button>
+        <a href="signup.php" class="btn btn-primary" style="color:#fff">Sign Up</a>
       </div>
       <div class ="col-md-4 col-sm-4 col-xs-12"></div>
     </div>

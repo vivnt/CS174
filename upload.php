@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php include('server.php'); include('imageComp.php') ?>
 
 <!doctype html>
 <html lang="en">
@@ -6,6 +6,9 @@
 <body>
   <!-- Author: Vivian Tran -->
   <!--  TODO: Need to add in PNG file and file check -->
+  <?php
+  echo file_get_contents("navigation.html");
+  ?>
   <?php
 
   session_start();
@@ -28,14 +31,19 @@
       $imagesize =  round($size / 1048, 1, PHP_ROUND_HALF_UP);
 
       // Converts file to image type then calculates width and height
-      $image = imagecreatefromjpeg($file);
+      if (exif_imagetype($file) == IMAGETYPE_JPEG) {
+        $image = imagecreatefromjpeg($file);
+      } else {
+        $image = imagecreatefrompng($file);
+      }
       $imagewidth = imagesx($image);
       $imageheight = imagesy($image);
 
       // Creates query to send to DB
-      $result = $conn->query("INSERT into images (author, category, width, height, size, fileName) VALUES ('$username', '$category', '$imagewidth', '$imageheight', '$imagesize', '$extension')");
+      $result = $conn->query("INSERT into images (author, category, width, height, size) VALUES ('$username', '$category', '$imagewidth', '$imageheight', '$imagesize')");
       $last_id = mysqli_insert_id($conn);
-      $fileName = $username . "_" . $last_id . "." . $extension ;
+      $fileName = $username . "_" . $last_id . ".png" ;
+      $file = $username . "_" . $last_id ;
 
       // Kevin Smith
       // Get filename that the user selected
@@ -45,22 +53,42 @@
       // Moves file to server with username_imageID_filename.filetype
       // This is to prevent conflicts and images not adding to the server.
       //
-      move_uploaded_file($_FILES['image']['tmp_name'], "images/$fileName");
+      move_uploaded_file($_FILES['image']['tmp_name'], "originals/$fileName");
+      imagepng($image, "originals/$fileName");
 
-      if (!$result) {
-        echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+      // Watermarking
+      $background = new Image("originals/$fileName");
+      $foreground = new Image('watermark.png');
+
+      // Will convert mountains to gray scale using averaging method
+      // $background->convertImageToGrayScale('testExport.jpg','average');
+
+      // Will add birds to the mountain background
+      $background->comp($foreground, 0, 0,"images/$file.png");
+
+      // // Moves watermarked image to a different folder
+      // $image = imagecreatefromjpeg("originals/$fileName");
+      // imagejpeg($image, "images/$fileName");
+
+      $update = $conn->query("UPDATE user SET credits = credits + 100 WHERE username = '$username'");
+
+      if (!$result || !$update) {
+        echo "INSERT/UPDATE failed: $result<br>" . $conn->error . "<br><br>";
+        echo "INSERT/UPDATE failed: $update<br>" . $conn->error . "<br><br>";
       }
+
+      echo '<div class="alert alert-success text-center container" role="alert">
+      Image has been uploaded
+      </div>';
+
     }
   }
   else {
-    // Redirects to login if the user is not logg
+    // Redirects to login if the user is not logged in
     header("Location: http://192.168.64.2/login.php");
     exit();
   }
 
-  ?>
-  <?php
-  echo file_get_contents("navigation.html");
   ?>
   <div class="container" style="padding: 15px;">
     <h1 style="text-align: center;">Upload</h1>

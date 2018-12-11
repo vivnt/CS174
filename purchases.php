@@ -5,7 +5,8 @@ echo file_get_contents("navigation.html");
 // Author: Vivian Tran
 session_start();
 
-// Updates the profile information with new credits
+// Downloads image but to local storage on the mysqlnd_ms_dump_servers
+// TODO: Need to change to user chosen directory
 $username = $_SESSION['username'];
 $query = "SELECT * FROM user WHERE username='$username'";
 $result = $conn->query($query);
@@ -17,18 +18,16 @@ elseif ($result->num_rows) {
   $_SESSION['credits'] = $row[6];
 }
 
-
-// Function to delete a image
+// Function to download an image
 // Author: Vivian Tran
-if (isset($_POST['id']) && isset($_POST['delete'])) {
-  $id = $_POST['id'];
-  $result = $conn->query("DELETE FROM images WHERE id = '$id'");
-  echo "Deleted";
-  if (!$result) {
-    echo "DELETE failed: $query<br>" . $conn->error . "<br><br>";
-  }
+if (isset($_POST['fileName']) && isset($_POST['download'])) {
+  $fileName = $_POST['fileName'];
+  $length = strlen($fileName);
+  $sub = substr($fileName, 7, $length-4);
+  $image = imagecreatefrompng("originals" . $sub);
+  imagepng($image, "download.png");
   echo '<div class="alert alert-success text-center container" role="alert">
-  Image has been deleted.
+  Image has been downloaded
   </div>';
 }
 
@@ -69,13 +68,14 @@ else {
 <form method="post" enctype="multipart/form-data">
   <div class="text-center">
     <button type="submit" name="logout" value="logout" class="btn btn-primary">Log Out</button>
-    <a href="/purchases.php" class="btn btn-success">View Purchases</a>
+    <button href="/purchases.php" class="btn btn-success">View Uploads</button>
   </div>
 </form>
 
 <?php
 // Shows all information in image table
-$query = "SELECT * FROM images where author = '$username'";
+$uid = $_SESSION['uid'];
+$query = "select * from transaction a, images b where a.imageId = b.id AND a.customerId = '$uid'";
 $result = $conn->query($query);
 
 if (!$result) {
@@ -83,7 +83,7 @@ if (!$result) {
 }
 
 $rows = $result->num_rows;
-echo "<h1 class='text-center'>Uploaded Images</h1>";
+echo "<h1 class='text-center'>Purchases</h1>";
 echo '<div class="container">';
 echo '<div class="row">';
 $uid = $_SESSION['uid'];
@@ -92,6 +92,9 @@ $uid = $_SESSION['uid'];
 // NOTE TO RAG: Use this to make your profile area. If you need help, let me know.
 // Maybe add this to the right side and the user information to the left?
 for ($j = 0 ; $j < $rows ; ++$j) {
+  $result->data_seek($j);
+  $fileName = $result->fetch_assoc()['filename'];
+  echo $fileName;
 
   $result->data_seek($j);
   $author = $result->fetch_assoc()['author'];
@@ -111,7 +114,6 @@ for ($j = 0 ; $j < $rows ; ++$j) {
   $result->data_seek($j);
   $imageID = $result->fetch_assoc()['id'];
 
-  $fileName = "images/" . $author . "_" . $imageID . ".png";
   echo ' <div class="col-sm-4">
   <div class="card">
   <div class="card-body">
@@ -125,8 +127,8 @@ for ($j = 0 ; $j < $rows ; ++$j) {
   <p class="card-text">Height: ' . $height . '</p>
   <p class="card-text">Size: ' . $size . '</p>
   <p class="card-text">ID: ' . $imageID . '</p>
-  <input type="hidden" name="id" value="' . $imageID . '">
-  <button type="submit" name="delete" value="delete" class="btn btn-primary">Delete</button>
+  <input type="hidden" name="fileName" value="' . $fileName . '">
+  <button type="submit" name="download" value="download" class="btn btn-primary">Download</button>
   </form>
   </div>
   </div>

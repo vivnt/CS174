@@ -34,9 +34,7 @@
     $ids[$j] = $result->fetch_assoc()['id'];
     $id = $result->fetch_assoc()['id'];
 
-    $result->data_seek($j);
-    $extension = $result->fetch_assoc()['fileName'];
-    $fileNames[$j] = "images/" . $author . "_" . $id . "." . $extension;
+    $fileNames[$j] = "images/" . $author . "_" . $id . ".png";
   }
   ?>
   <!-- Slide Show -->

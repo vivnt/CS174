@@ -24,7 +24,9 @@
 
     // Creates query to send to DB
     $result = $conn->query("INSERT into user (firstName, lastName, username, password, credits) VALUES ('$firstName', '$lastName', '$username', '$token', '$credits')");
-    echo "created user";
+    echo '<div class="alert alert-success text-center container" role="alert">
+    User has been created.
+    </div>';
     if (!$result) {
       echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
     }
