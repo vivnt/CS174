@@ -6,9 +6,6 @@
 </head>
 <body>
 
-  <?php
-  echo file_get_contents("navigation.html")
-  ?>
 
 
   <?php
@@ -35,7 +32,7 @@
         $_SESSION['lastName'] = $row[2];
         $_SESSION['credits'] = $row[6];
         $_SESSION['uid'] = $row[0];
-        header("Location: http://192.168.64.2/profile.php");
+        header("Location: http://localhost/index.php");
         exit();
       }
       else die("Invalid username/password combination");
