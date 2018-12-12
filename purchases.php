@@ -59,7 +59,7 @@ if (isset($_SESSION['username']))
 }
 else {
   // Will redirect to login if you try to access this page without logged in
-  header("Location: http://192.168.64.2/login.php");
+  header("Location: http://localhost/login.php");
   exit();
 }
 
@@ -68,7 +68,7 @@ else {
 <form method="post" enctype="multipart/form-data">
   <div class="text-center">
     <button type="submit" name="logout" value="logout" class="btn btn-primary">Log Out</button>
-    <button href="/purchases.php" class="btn btn-success">View Uploads</button>
+    <a href="/profile.php" class="btn btn-success">View Uploads</a>
   </div>
 </form>
 
