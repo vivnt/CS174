@@ -65,10 +65,10 @@ else {
 
 ?>
 
-<form method="post" enctype="multipart/form-data">
+<form enctype="multipart/form-data">
   <div class="text-center">
     <button type="submit" name="logout" value="logout" class="btn btn-primary">Log Out</button>
-    <button href="/purchases.php" class="btn btn-success">View Uploads</button>
+    <a href="/profile.php" class="btn btn-success">View Uploads</a>
   </div>
 </form>
 

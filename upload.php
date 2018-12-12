@@ -40,7 +40,7 @@
       $imageheight = imagesy($image);
 
       // Creates query to send to DB
-      $result = $conn->query("INSERT into images (author, category, width, height, size) VALUES ('$username', '$category', '$imagewidth', '$imageheight', '$imagesize')");
+      $result = $conn->query("INSERT into images (author, category, width, height, size, popularity) VALUES ('$username', '$category', '$imagewidth', '$imageheight', '$imagesize', '0')");
       $last_id = mysqli_insert_id($conn);
       $fileName = $username . "_" . $last_id . ".png" ;
       $file = $username . "_" . $last_id ;
