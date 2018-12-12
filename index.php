@@ -10,7 +10,7 @@
   $categories = [];
   $ids = [];
 
-  $query = "SELECT * FROM images LIMIT 10";
+  $query = "SELECT * FROM images ORDER BY popularity DESC LIMIT 10";
   $result = $conn->query($query);
 
   if (!$result) {

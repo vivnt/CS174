@@ -94,7 +94,6 @@ $uid = $_SESSION['uid'];
 for ($j = 0 ; $j < $rows ; ++$j) {
   $result->data_seek($j);
   $fileName = $result->fetch_assoc()['filename'];
-  echo $fileName;
 
   $result->data_seek($j);
   $author = $result->fetch_assoc()['author'];

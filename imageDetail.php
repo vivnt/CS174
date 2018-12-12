@@ -52,7 +52,7 @@ if (isset($_GET['id']) && isset($_POST['purchase'])) {
   // INSERT transaction and UPDATE user credits
   $insert = $conn->query("INSERT into transaction (customerId, imageId, date, filename) VALUES ('$customerID', '$imageId', '$date', '$fileName')");
   $update = $conn->query("UPDATE user SET credits = credits - 100 WHERE id = '$customerID'");
-  $update = $conn->query("UPDATE images SET popularity = popularity - 100 WHERE id = '$imageId'");
+  $update = $conn->query("UPDATE images SET popularity = popularity + 1 WHERE id = '$imageId'");
 
   if (!$update || !$insert) {
     echo "INSERT/UPDATE failed: $query<br>" . $conn->error . "<br><br>";

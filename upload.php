@@ -85,7 +85,7 @@
   }
   else {
     // Redirects to login if the user is not logged in
-    header("Location: http://192.168.64.2/login.php");
+    header("Location:login.php");
     exit();
   }
 
