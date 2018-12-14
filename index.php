@@ -50,7 +50,7 @@ for ($j = 0; $j < 3; ++$j) {
   <div class="container-fluid jumbotron">
     <div style="text-align: center">
         <h1 class="display-4">Hi!</h1>
-        <p>Welcome to the image hosting and sharing website! Please checkout the "Discover section to see all the latest from our contributors</p>
+        <p>Welcome to the image hosting and sharing website! Please checkout the "Discover" section to see all the latest purchases of our users</p>
     </div>
   </div>
 
