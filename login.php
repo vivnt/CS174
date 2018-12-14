@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -66,22 +68,18 @@
           </div>
           <div class="form-group">
             <label style="color:#fff">Password</label>
-            <input type="text" class="form-control" name="password" placeholder="Enter Your Password">
+            <input type="password" class="form-control" name="password" placeholder="Enter Your Password">
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-success">Login</button>
+            <a href="signup.php" class="btn btn-primary" style="color:#fff">Sign Up</a>
           </div>
         </form>
         <!-- NOTE TO RAG: You can't put this inside the form. Try to figure out another way or anther place. -->
-        <a href="signup.php" class="btn btn-primary" style="color:#fff">Sign Up</a>
+        
       </div>
       <div class ="col-md-4 col-sm-4 col-xs-12"></div>
     </div>
-  </div>
-  <div class="container" style="padding: 15px;">
-    <h1 style="text-align: center;">Login</h1>
-
-    <a href="signup.php">Don't have an account? Sign up here.</a>
   </div>
 </body>
 </html>
