@@ -69,7 +69,6 @@
             <div class="card-body">
               <img class="card-img-top" src="' . $fileName . '" alt="Card image cap">
                 <div class="card-body">
-                <h5 class="card-title">Card title</h5>
                   <form method="post" action="">
                     <input type="hidden" name="id" value="' . $id . '">
                     <p class="card-text">Author: ' . $author . '</p>

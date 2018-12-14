@@ -91,7 +91,7 @@
 
   ?>
   <div class="container" style="padding: 15px;">
-    <h1 style="text-align: center;">Upload</h1>
+    <h1 style="text-align: center;">Upload Your Image</h1>
     <form action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label>Genre</label>
@@ -110,7 +110,7 @@
         <input type="file" class="form-control-file" name="image" id="image">
       </div>
       <div class="text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" style="width:100%">Submit</button>
       </div>
     </form>
   </div>

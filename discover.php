@@ -24,7 +24,7 @@
   <!-- Search Bar -->
   <!-- Author: Raghav Gupta -->
   <div class="container-fluid search">
-    <h1>Search</h1>
+    <h1>Search Purchase Trends</h1>
     <form action="" autocomplete="off" method="post" enctype="multipart/form-data" accept-charset="utf-8">
       <div class="form-group">
         <label>Search By:</label>
@@ -37,7 +37,7 @@
         <label for="exampleInputPassword1">ID/Username</label>
         <input class="form-control" name="searchBy" placeholder="ID/Username" placeholder="ID">
       </div>
-      <button type="submit" name="search" value="search" class="btn btn-primary">Search</button><br />
+      <button type="submit" name="search" value="search" class="btn btn-primary" style="width:100%">Search</button><br />
     </form>
   </div>
   <div>

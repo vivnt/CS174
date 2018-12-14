@@ -60,7 +60,7 @@ if (isset($_SESSION['username']))
 }
 else {
   // Will redirect to login if you try to access this page without logged in
-  header("Location:login.php");
+  header("Location: http://localhost/login.php");
   exit();
 }
 
